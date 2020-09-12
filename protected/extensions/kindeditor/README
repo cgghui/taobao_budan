@@ -1,0 +1,84 @@
+[KindEditor](http://www.kindsoft.net/) 是一套开源的在线HTML编辑器，主要用于让用户在网站上获得所见即所得编辑效果，开发人员可以用 KindEditor 把传统的多行文本输入框(textarea)替换为可视化的富文本输入框。
+
+##Requirements
+
+Requirements of using this extension (e.g. Yii 1.1 or above)...
+
+##Version
+0.0.1
+
+##Usage
+
+###How to use
+Before code
+~~~
+[php]
+<div class="form">
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'post-form',
+)); ?>
+	...
+	<div class="row">
+		<?php echo $form->labelEx($model,'content'); ?>
+		<?php echo $form->textArea($model,'content',array('rows'=>6, 'cols'=>50)); ?>
+		<?php echo $form->error($model,'content'); ?>
+	</div>
+	...
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	</div>
+<?php $this->endWidget(); ?>
+</div><!-- form -->
+~~~
+
+After code
+~~~
+[php]
+// Add anywhere in this page(Example:<Yii-Application>/proected/views/post/_form.php)
+<?php $this->widget('ext.kindeditor.KindEditorWidget',array(
+	'id'=>'Post_content',	//Textarea id
+	// Additional Parameters (Check http://www.kindsoft.net/docs/option.html)
+	'items' => array(
+		'width'=>'700px',
+		'height'=>'300px',
+		'themeType'=>'simple',
+		'allowImageUpload'=>false,
+		'allowFlashUpload'=>false,
+		'allowMediaUpload'=>false,
+		'allowFileUpload'=>false,
+		'items'=>array(
+			'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+			'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+			'insertunorderedlist', '|', 'emoticons', 'image', 'link',),
+	),
+)); ?>
+
+<div class="form">
+<?php $form=$this->beginWidget('CActiveForm', array(
+	'id'=>'post-form',
+)); ?>
+	...
+	<div class="row">
+		<?php echo $form->labelEx($model,'content'); ?>
+		<?php echo $form->textArea($model,'content',array('visibility'=>'hidden')); ?>
+		<?php echo $form->error($model,'content'); ?>
+	</div>
+	...
+	<div class="row buttons">
+		<?php echo CHtml::submitButton($model->isNewRecord ? 'Create' : 'Save'); ?>
+	</div>
+<?php $this->endWidget(); ?>
+</div><!-- form -->
+~~~
+
+##[Resources]
+
+Created By <jinmmd@gmail.com> Based on Joe Chu's [KindEditor](http://www.yiiframework.com/extension/kindeditor)
+
+ * [KindEditor Documentation](http://www.kindsoft.net/doc.php)
+ * [KindEditor Demo](http://www.kindsoft.net/demo.php)
+
+**Todos:**  
+
+ * 安全可定制的上传功能；
+ * 支持编辑器的API和自定义插件；

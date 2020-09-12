@@ -1,0 +1,8 @@
+/.user.ini
+*.log
+/framework/
+/images/
+/attached/
+/assets/
+/requirements/
+/.htaccess
